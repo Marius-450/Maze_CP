@@ -1,10 +1,10 @@
 # Maze_CP
 <img src="https://raw.githubusercontent.com/Marius-450/screenshots/master/maze.png" align="right">
-A little maze ball game for Circuit Playground boards with TFT Gizmo, driven by the accelerometer.
+A little maze ball game for Circuit Playground Bluefruit with TFT Gizmo, driven by the accelerometer.
 
 ## Requirements 
 
-* A Circuit Playground board (express or bluefruit) and TFT-Gizmo.
+* A Circuit Playground Bluefruit board and TFT-Gizmo.
 * CircuitPython 5.x >= beta 3
 
 ### Libraries
@@ -25,6 +25,7 @@ Tilt the board to make the ball move. When the ball reach the goal (red cross), 
 * buttons actions ? 
 * victory sound ?
 * grab a "key" to open/activate the "exit"
+* trying to use less memory to run it on CPX
 
 ## Thanks
 
