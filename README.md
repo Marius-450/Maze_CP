@@ -5,6 +5,7 @@ A little maze ball game for Circuit Playground boards with TFT Gizmo, driven by 
 ## Requirements 
 
 * A Circuit Playground board (express or bluefruit) and TFT-Gizmo.
+* CircuitPython 5.x >= beta 3
 
 ### Libraries
 
