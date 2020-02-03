@@ -15,10 +15,12 @@ A little maze ball game for Circuit Playground boards with TFT Gizmo, driven by 
 
 ## Gameplay 
 
-Tilt the board to make the ball move. When the ball reach the goal (red cross), the maze reinitialize.
+Tilt the board to make the ball move. When the ball reach the goal (red cross), a new maze is created randomly.
 <img src="https://raw.githubusercontent.com/Marius-450/screenshots/master/maze_creation1.png" height="200"><img src="https://raw.githubusercontent.com/Marius-450/screenshots/master/maze_creation.png" height="200">
+
 ## Todo and issues
 
+* need better graphical elements 
 * going thru walls randomly (rare bug hard to reproduce)
 * buttons actions ? 
 * victory sound ?
