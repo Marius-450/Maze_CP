@@ -26,6 +26,8 @@ Tilt the board to make the ball move. When the ball reach the goal (red cross), 
 * victory sound ?
 * grab a "key" to open/activate the "exit"
 * trying to use less memory to run it on CPX
+* increase difficulty by adding holes that bring the ball back to the start point
+
 
 ## Thanks
 
