@@ -6,6 +6,7 @@ from random import randint
 from adafruit_gizmo import tft_gizmo
 import adafruit_lis3dh
 
+
 import adafruit_imageload
 
 import displayio
@@ -81,45 +82,64 @@ def generate_maze(start_x=None, start_y=None):
     goal_y = 0
     # visited cells
     vis = [[0] * w + [1] for _ in range(h)] + [[1] * (w + 1)]
+    path = []
 
     def walk(x, y, depth):
         global max_depth, goal_x, goal_y
-        if depth > max_depth:
-            max_depth = depth
-            goal_x = x
-            goal_y = y
-        vis[y][x] = 1
-        d = [(x - 1, y), (x, y + 1), (x + 1, y), (x, y - 1)]
-        shuffle(d)
-        for (xx, yy) in d:
-            if xx > 7 or yy > 7: continue
-            if vis[yy][xx]: continue
-            if xx == x:
-                # vertical move
-                if yy > y:
-                    # going south
-                    maze[x,yy] = 3
-                else:
-                    # going north
-                    if maze[x,y] == 1:
-                        maze[x,y] = 3
+        path.append((x,y))
+        while len(path)>0:
+            move = False
+            if depth > max_depth:
+                max_depth = depth
+                goal_x = x
+                goal_y = y
+            if vis[y][x] != 1 :
+                path.append((x,y))
+                vis[y][x] = 1
+            d = [(x - 1, y), (x, y + 1), (x + 1, y), (x, y - 1)]
+            shuffle(d)
+            for (xx, yy) in d:
+                if xx > 7 or yy > 7: continue
+                if vis[yy][xx]: continue
+                move = True
+                if xx == x:
+                    # vertical move
+                    if yy > y:
+                        # going south
+                        maze[x,yy] = 3
                     else:
-                        maze[x,y] = 2
-            if yy == y:
-                # horizontal move
-                if xx > x:
-                    # going east
-                    if maze[x,y] == 1:
-                        maze[x,y] = 0
+                        # going north
+                        if maze[x,y] == 1:
+                            maze[x,y] = 3
+                        else:
+                            maze[x,y] = 2
+                if yy == y:
+                    # horizontal move
+                    if xx > x:
+                        # going east
+                        if maze[x,y] == 1:
+                            maze[x,y] = 0
+                        else:
+                            maze[x,y] = 2
                     else:
-                        maze[x,y] = 2
-                else:
-                    #going west
-                    maze[xx,y] = 0
-            time.sleep(0.05)
-            walk(xx, yy, depth + 1)
+                        #going west
+                        maze[xx,y] = 0
+                if move:
+                    print("moving to", xx, yy)
+                    x,y,depth = (xx, yy, depth + 1)
+                    time.sleep(0.05)
+                    break
 
-
+            if move:
+                continue
+            else:
+                path.pop()
+                if len(path) < 1:
+                    print("maze completed")
+                    break
+                x,y = path[-1]
+                depth -= 1
+                print("moving back to", x, y)
 
     if start_x == None:
         start_x = randint(0,7)
@@ -383,6 +403,7 @@ while True:
     ball.y += math.ceil(delta_y)
 
     # actions for pressing or releasing buttons
+    # unused now
 
     if button_a.value and but_a == False:
         print("Button A pressed")
